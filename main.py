@@ -189,7 +189,7 @@ bot = MyBot(command_prefix="!", intents=intents)
 
 # ---------------- UI: INVITES ----------------
 class InviteDMView(discord.ui.View):
-    def __init__(self, guild_id: int, team_role_id: int, inviter_id: int, invited_id: int, timeout: float = 86400):
+    def __init__(self, guild_id: int, team_role_id: int, inviter_id: int, invited_id: int, timeout: float = None):
         super().__init__(timeout=timeout)
         self.guild_id = guild_id
         self.team_role_id = team_role_id
@@ -262,7 +262,7 @@ class InviteDMView(discord.ui.View):
 
 
 class InviteUserSelectView(discord.ui.View):
-    def __init__(self, requester_id: int, team_role_id: int, timeout: float = 60):
+    def __init__(self, requester_id: int, team_role_id: int, timeout: float = None):
         super().__init__(timeout=timeout)
         self.requester_id = requester_id
         self.team_role_id = team_role_id
@@ -330,7 +330,7 @@ class InviteUserSelectView(discord.ui.View):
 
 # ---------------- UI: ROSTER ----------------
 class TeamRosterView(discord.ui.View):
-    def __init__(self, options: list[discord.SelectOption], requester_id: int, timeout: float = 60):
+    def __init__(self, options: list[discord.SelectOption], requester_id: int, timeout: float = None):
         super().__init__(timeout=timeout)
         self.requester_id = requester_id
 
@@ -420,7 +420,7 @@ class TeamRosterView(discord.ui.View):
 
 
 class FAQRoleView(discord.ui.View):
-    def __init__(self, timeout: float = 0):
+    def __init__(self, timeout: float = None):
         super().__init__(timeout=timeout)
 
     async def _toggle_role(
@@ -516,7 +516,7 @@ class AssignmentView(discord.ui.View):
         time_str: str,
         match_times_msg_id: int | None,
         ping_line: str,
-        timeout: float = 900,
+        timeout: float = None,
     ):
         super().__init__(timeout=timeout)
         self.teams_str = teams_str
@@ -656,7 +656,7 @@ class MatchAcceptView(discord.ui.View):
         team1_id: int,
         team2_id: int,
         teams_str: str,
-        timeout: float = 900,
+        timeout: float = None,
     ):
         super().__init__(timeout=timeout)
         self.week = week
